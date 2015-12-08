@@ -4,6 +4,7 @@ An extenstion to Angular's ngClick directive. Code based on ngTouch's ng-click [
 ## Features
 1. long press longer than 750ms will not fire a tap or click event. This means that click handler will not fire upon releasing form a drag, swipe or long press, instead it will be canceled.
 
+PS. You can change the 750ms to your desired value from the source code.
 
 ## Install
 
@@ -35,3 +36,8 @@ scope.clickHandler = function(){
   alert('heeey');
 };
 ```
+
+##Other Directives
+check out these other useful directives I made:
+
+1. [alPress](www.google.com): Angular directive for long press/touch
