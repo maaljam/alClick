@@ -40,4 +40,4 @@ scope.clickHandler = function(){
 ##Other Directives
 check out these other useful directives I made:
 
-1. [alPress](www.google.com): Angular directive for long press/touch
+1. [alPress](https://github.com/maaljam/alPress): Angular directive for long press/touch
