@@ -1,8 +1,9 @@
 /*
 What's modified:
 1- defining the directive without ngTouch
-2- var clickHandler = $parse(attr.ngClick) |TO|  var clickHandler = $parse(attr.alClick),
-3- MOUSE_CLICK_DURATION, mouseDiff, mousedown, mousemove, mouseup methods, on('click') method
+2- remove ng-click all together
+3- var clickHandler = $parse(attr.ngClick) |TO|  var clickHandler = $parse(attr.alClick),
+4- MOUSE_CLICK_DURATION, mouseDiff, mousedown, mousemove, mouseup methods, on('click') method
 */
 (function(window, angular, undefined) {
 
@@ -13,6 +14,15 @@ What's modified:
     function nodeName_(element) {
         return angular.lowercase(element.nodeName || (element[0] && element[0].nodeName));
     }
+
+    // block to disable ngClick from app in order to avoid duplicate/uneseccaury listenrs.
+    alClick.config(['$provide', function($provide) {
+        $provide.decorator('ngClickDirective', ['$delegate', function($delegate) {
+            // drop the ngClick directive all together
+            $delegate[0].compile = function(){return angular.noop};
+            return $delegate;
+        }]);
+    }]);
 
     alClick.directive('alClick', ['$parse', '$timeout', '$rootElement',
         function($parse, $timeout, $rootElement) {
@@ -26,9 +36,6 @@ What's modified:
             var lastPreventedTime;
             var touchCoordinates;
             var lastLabelClickCoordinates;
-
-
-
 
             // Checks if the coordinates are close enough to be within the region.
             function hit(x1, y1, x2, y2) {
