@@ -36,6 +36,19 @@ scope.clickHandler = function(){
   alert('heeey');
 };
 ```
+## Warning
++ this directive removes/disables angular's ng-click. You will not be able to use al-click along with ng-click. This is because both directives register listener events to the root element, so in order to have only one listener, we removed/disabled ng-click.
++ To keep ng-click enable, modify the source code and remove hte following block:
+
+``` JavaScript
+alClick.config(['$provide', function($provide) {
+    $provide.decorator('ngClickDirective', ['$delegate', function($delegate) {
+      $delegate[0].compile = function(){return angular.noop};
+      return $delegate;
+    }]);
+}]);
+``` 
+
 
 ##Other Directives
 check out these other useful directives I made:
