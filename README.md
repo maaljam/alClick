@@ -50,6 +50,9 @@ alClick.config(['$provide', function($provide) {
 }]);
 ``` 
 
+## License
+
+[MIT](http://thi.mit-license.org/)
 
 ##Other Directives
 check out these other useful directives I made:
